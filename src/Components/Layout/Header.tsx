@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <>
+    <header data-testid="header">
       <nav className="navbar row">
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
@@ -37,7 +37,7 @@ const Header = () => {
           </span>
         </div>
       </nav>
-    </>
+    </header>
   )
 }
 
