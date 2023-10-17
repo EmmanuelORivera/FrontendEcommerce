@@ -16,4 +16,11 @@ describe('App', () => {
     const footerElement = screen.getByTestId('footer')
     expect(footerElement).toBeInTheDocument()
   })
+
+  it('should render the home component', () => {
+    render(<App />)
+
+    const homeComponent = screen.getByTestId('home')
+    expect(homeComponent).toBeInTheDocument()
+  })
 })

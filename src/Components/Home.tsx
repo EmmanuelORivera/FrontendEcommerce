@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <section id="products" className="container mt-5">
+    <section data-testid="home" id="products" className="container mt-5">
       <div className="row">
         <div className="col-sm-12 col-md-6 col-lg-3 my-3">
           <div className="card p-3 rounded">
