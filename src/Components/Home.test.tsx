@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import Home from './Home'
 
@@ -43,5 +43,15 @@ describe('Home', () => {
 
     const viewDetailButton = screen.getByRole('link', { name: /Details/i })
     expect(viewDetailButton).toBeInTheDocument()
+  })
+
+  it('should render the component with the correct title', async () => {
+    const pageTitle = 'The best products online - Ecommerce Amazon'
+
+    render(<Home />)
+
+    await waitFor(() => {
+      expect(document.title).toBe(pageTitle)
+    })
   })
 })
