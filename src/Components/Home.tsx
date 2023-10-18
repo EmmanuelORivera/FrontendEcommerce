@@ -1,6 +1,15 @@
+import { useEffect } from 'react'
+import { useAppDispatch } from '../hooks'
 import MetaData from './Layout/MetaData'
+import { getProducts } from '../actions/productAction'
 
 const Home = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [])
+
   return (
     <>
       <MetaData title="The best products online" />
