@@ -1,22 +1,25 @@
 import { render, screen, waitFor } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
+import { Provider } from 'react-redux'
 import Home from './Home'
+import { store } from '../store'
 
 describe('Home', () => {
-  it('should render component without a problem', () => {
-    render(<Home />)
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <Home />
+      </Provider>
+    )
   })
+  it('should render component without a problem', () => {})
 
   it('should render a product image', () => {
-    render(<Home />)
-
     const imageElement = screen.getByRole('img')
     expect(imageElement).toBeInTheDocument()
   })
 
   it('should render a product title with the correct text', () => {
-    render(<Home />)
-
     const headingElement = screen.getByRole('heading')
     expect(headingElement).toBeInTheDocument()
     expect(headingElement.textContent).toBe(
@@ -25,30 +28,22 @@ describe('Home', () => {
   })
 
   it('should render the number of reviews', () => {
-    render(<Home />)
-
     const ratingElement = screen.getByText('(5 Reviews)')
     expect(ratingElement).toBeInTheDocument()
   })
 
   it('should render price element', () => {
-    render(<Home />)
-
     const priceElement = screen.getByText('$45.67')
     expect(priceElement).toBeInTheDocument()
   })
 
   it('should render a view detail button', () => {
-    render(<Home />)
-
     const viewDetailButton = screen.getByRole('link', { name: /Details/i })
     expect(viewDetailButton).toBeInTheDocument()
   })
 
   it('should render the component with the correct title', async () => {
     const pageTitle = 'The best products online - Ecommerce Amazon'
-
-    render(<Home />)
 
     await waitFor(() => {
       expect(document.title).toBe(pageTitle)
