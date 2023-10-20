@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getProducts } from '../actions/productAction'
+import { IProduct } from '../interfaces/IProduct'
 
 interface ProductState {
-  products: never[]
+  products: IProduct[]
   loading: boolean
   error: null | string
 }
