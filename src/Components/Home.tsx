@@ -3,14 +3,19 @@ import { useAppDispatch, useAppSelector } from '../hooks'
 import MetaData from './Layout/MetaData'
 import { getProducts } from '../actions/productAction'
 import Product from './Product/Product'
+import Loader from './Layout/Loader'
 
 const Home = () => {
   const dispatch = useAppDispatch()
-  const { products } = useAppSelector((state) => state.products)
+  const { products, loading, error } = useAppSelector((state) => state.products)
 
   useEffect(() => {
     dispatch(getProducts())
   }, [])
+
+  if (loading) {
+    return <Loader />
+  }
 
   return (
     <>
