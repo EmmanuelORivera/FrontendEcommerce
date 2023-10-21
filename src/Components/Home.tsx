@@ -4,6 +4,7 @@ import MetaData from './Layout/MetaData'
 import { getProducts } from '../actions/productAction'
 import Product from './Product/Product'
 import Loader from './Layout/Loader'
+import { toast } from 'react-toastify'
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -15,6 +16,10 @@ const Home = () => {
 
   if (loading) {
     return <Loader />
+  }
+
+  if (error !== null) {
+    toast.error(`Upps there was an error: ${error}`)
   }
 
   return (
