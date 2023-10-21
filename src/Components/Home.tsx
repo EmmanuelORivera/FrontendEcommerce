@@ -2,9 +2,8 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import MetaData from './Layout/MetaData'
 import { getProducts } from '../actions/productAction'
-import Product from './Product/Product'
-import Loader from './Layout/Loader'
 import { toast } from 'react-toastify'
+import Products from './Products/Products'
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -13,10 +12,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(getProducts())
   }, [])
-
-  if (loading) {
-    return <Loader />
-  }
 
   if (error !== null) {
     toast.error(error)
@@ -27,11 +22,7 @@ const Home = () => {
       <MetaData title="The best products online" />
       <section data-testid="home" id="products" className="container mt-5">
         <div className="row">
-          {products
-            ? products.map((product) => (
-                <Product key={product.id} col={4} product={product} />
-              ))
-            : 'There is no products'}
+          <Products products={products} col={4} loading={loading} />
         </div>
       </section>
     </>
