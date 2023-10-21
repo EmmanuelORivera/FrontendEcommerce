@@ -19,7 +19,7 @@ const Home = () => {
   }
 
   if (error !== null) {
-    toast.error(`Upps there was an error: ${error}`)
+    toast.error(error)
   }
 
   return (
