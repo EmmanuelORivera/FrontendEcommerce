@@ -30,7 +30,7 @@ export const productSlice = createSlice({
       }),
       builder.addCase(getProducts.rejected, (state, action) => {
         state.loading = false
-        state.error = action.error.message!
+        state.error = action.payload as string
       })
   },
 })
