@@ -5,8 +5,10 @@ interface ProductProps {
   product: IProduct
   col: number
 }
+
+export const default_image = './images/default_product.png'
+
 const Product = ({ product, col }: ProductProps) => {
-  const default_image = './images/default_product.png'
   return (
     <div className={`col-sm-12 col-md-6 col-lg-${col} my-3`}>
       <div className="card p-3 rounded">
@@ -20,7 +22,7 @@ const Product = ({ product, col }: ProductProps) => {
         />
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">
-            <Link>{product.name}</Link>
+            <Link to="#">{product.name}</Link>
           </h5>
           <div className="ratings mt-auto">
             <div className="rating-outer">
@@ -32,7 +34,7 @@ const Product = ({ product, col }: ProductProps) => {
             <span id="no_of_reviews">({product.reviewsQuantity} Reviews)</span>
           </div>
           <p className="card-text">${product.price}</p>
-          <Link id="view_btn" className="btn btn-block">
+          <Link to="#" id="view_btn" className="btn btn-block">
             Details
           </Link>
         </div>

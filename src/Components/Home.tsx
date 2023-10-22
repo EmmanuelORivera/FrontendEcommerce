@@ -21,9 +21,7 @@ const Home = () => {
     <>
       <MetaData title="The best products online" />
       <section data-testid="home" id="products" className="container mt-5">
-        <div className="row">
-          <Products products={products} col={4} loading={loading} />
-        </div>
+        <Products products={products} col={4} loading={loading} />
       </section>
     </>
   )

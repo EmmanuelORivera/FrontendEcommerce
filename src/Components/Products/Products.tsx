@@ -14,13 +14,13 @@ const Products = ({ products, col, loading }: ProductsProps) => {
   }
 
   return (
-    <>
+    <div data-testid="products" className="row">
       {products
         ? products.map((product) => (
             <Product key={product.id} col={col} product={product} />
           ))
         : 'There is no products'}
-    </>
+    </div>
   )
 }
 
