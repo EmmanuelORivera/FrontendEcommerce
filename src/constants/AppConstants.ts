@@ -1,6 +1,6 @@
 const production = {
   url: {
-    API_URL: 'https://somerealurl.com',
+    API_URL: 'http://localhost:5125',
   },
 }
 

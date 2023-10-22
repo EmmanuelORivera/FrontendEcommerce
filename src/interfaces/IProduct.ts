@@ -16,7 +16,7 @@ export interface IProduct {
   statusLabel: string
 }
 
-enum ProductStatus {
+export enum ProductStatus {
   Active,
   Inactive,
 }
