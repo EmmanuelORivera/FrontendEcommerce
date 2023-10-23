@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import MetaData from './Layout/MetaData'
-import { getProducts } from '../actions/productAction'
+import { getProducts } from '../actions/productsAction'
 import { toast } from 'react-toastify'
 import Products from './Products/Products'
 
