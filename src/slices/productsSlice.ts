@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getProducts } from '../actions/productAction'
+import { getProducts } from '../actions/productsAction'
 import { IProduct } from '../interfaces/IProduct'
 
-interface ProductState {
+interface ProductsState {
   products: IProduct[]
   loading: boolean
   error: null | string
 }
 
-export const initialState: ProductState = {
+export const initialState: ProductsState = {
   products: [],
   loading: false,
   error: null,
