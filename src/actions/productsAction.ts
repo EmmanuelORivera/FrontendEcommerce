@@ -15,7 +15,7 @@ export const getProducts = createAsyncThunk(
 
 export const getProductById = createAsyncThunk(
   'products/getProductId',
-  async (id, { rejectWithValue }) => {
+  async (id: string, { rejectWithValue }) => {
     try {
       const response = await axios.get(`api/v1/product/${id}`)
       return response.data
