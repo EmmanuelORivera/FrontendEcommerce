@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import Product, { default_image } from './Product'
 import { IProduct, ProductStatus } from '../../interfaces/IProduct'
 import { MemoryRouter } from 'react-router-dom'
@@ -8,6 +8,7 @@ describe('Product', () => {
   let fakeProduct: IProduct = {
     id: 1,
     name: 'Sample Product',
+    description: 'a test description',
     price: 49.99,
     rating: 4.5,
     seller: 'Sample Seller',
@@ -57,6 +58,21 @@ describe('Product', () => {
     )
     const viewDetailButton = screen.getByRole('link', { name: /details/i })
     expect(viewDetailButton).toBeInTheDocument()
+  })
+
+  it('details link should redirect to the route of that product', async () => {
+    render(
+      <MemoryRouter>
+        <Product col={4} product={fakeProduct} />
+      </MemoryRouter>
+    )
+
+    const viewDetailButton = screen.getByRole('link', { name: /details/i })
+
+    expect(viewDetailButton).toHaveAttribute(
+      'href',
+      `/product/${fakeProduct.id}`
+    )
   })
 
   it('should render correct price', () => {
