@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { IProduct } from '../../interfaces/IProduct'
+import ProductRating from './ProductRating'
 
 interface ProductProps {
   product: IProduct
@@ -25,12 +26,7 @@ const Product = ({ product, col }: ProductProps) => {
             <Link to="#">{product.name}</Link>
           </h5>
           <div className="ratings mt-auto">
-            <div className="rating-outer">
-              <div
-                className="rating-inner"
-                style={{ width: `${(product.rating / 5) * 100}%` }}
-              ></div>
-            </div>
+            <ProductRating product={product} />
             <span id="no_of_reviews">({product.reviewsQuantity} Reviews)</span>
           </div>
           <p className="card-text">${product.price}</p>
