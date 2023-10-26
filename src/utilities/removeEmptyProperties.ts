@@ -3,7 +3,7 @@ export const removeEmptyProperties = (
 ): Record<string, any> => {
   let newObject: Record<string, any> = {}
 
-  Object.keys(obj).filter((key) => {
+  Object.keys(obj).forEach((key) => {
     if (obj[key] !== undefined && obj[key]) newObject[key] = obj[key]
   })
 
