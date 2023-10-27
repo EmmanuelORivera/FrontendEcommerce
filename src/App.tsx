@@ -10,8 +10,8 @@ import ProductDetail from './Components/Product/ProductDetail'
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/product/:id" element={<ProductDetail />}></Route>
