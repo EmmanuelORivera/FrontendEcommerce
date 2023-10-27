@@ -51,7 +51,7 @@ export const productPaginationSlice = createSlice({
     updateCategory: (state, action) => {
       state.category = action.payload.category
     },
-    updateRationg: (state, action) => {
+    updateRating: (state, action) => {
       state.rating = action.payload.rating
     },
     resetPagination: (state) => {
@@ -63,4 +63,35 @@ export const productPaginationSlice = createSlice({
       state.rating = null
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(getProductPagination.pending, (state) => {
+      state.loading = true
+      state.error = null
+    }),
+      builder.addCase(getProductPagination.fulfilled, (state, action) => {
+        state.loading = false
+        state.products = action.payload.data
+        state.count = action.payload.count
+        state.pageIndex = action.payload.pageIndex
+        state.pageSize = action.payload.pageSize
+        state.pageCount = action.payload.pageCount
+        state.resultByPage = action.payload.resultByPage
+        state.error = null
+      }),
+      builder.addCase(getProductPagination.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload as string
+      })
+  },
 })
+
+export const {
+  searchPagination,
+  setPageIndex,
+  updatePrice,
+  resetPagination,
+  updateCategory,
+  updateRating,
+} = productPaginationSlice.actions
+
+export const productPaginationReducer = productPaginationSlice.reducer
