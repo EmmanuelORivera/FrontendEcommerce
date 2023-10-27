@@ -73,13 +73,16 @@ describe('Home', () => {
     )
 
     server.use(
-      rest.get('http://localhost:5125/api/v1/product/list', (req, res, ctx) => {
-        return res(
-          ctx.delay(1),
-          ctx.status(500),
-          ctx.json({ error: 'Error on the server' })
-        )
-      })
+      rest.get(
+        'http://localhost:5125/api/v1/product/pagination',
+        (req, res, ctx) => {
+          return res(
+            ctx.delay(1),
+            ctx.status(500),
+            ctx.json({ error: 'Error on the server' })
+          )
+        }
+      )
     )
 
     expect(toast.error).not.toHaveBeenCalled()
