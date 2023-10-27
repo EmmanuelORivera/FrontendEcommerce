@@ -4,12 +4,12 @@ import { IProduct } from '../interfaces/IProduct'
 
 interface ProductPaginationState {
   products: IProduct[]
-  count: Number
-  pageIndex: Number
-  pageSize: Number
-  pageCount: Number
+  count: number
+  pageIndex: number
+  pageSize: number
+  pageCount: number
   loading: boolean
-  resultByPage: 0
+  resultByPage: number
   error: string | null
   search: string | null
   maxPrice: number | null
