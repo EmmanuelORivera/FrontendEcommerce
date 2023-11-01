@@ -76,7 +76,7 @@ const Home = () => {
       <MetaData title="The best products online" />
       <section data-testid="home" id="products" className="container mt-5">
         {search ? (
-          <>
+          <div className="row">
             <div className="col-6 col-md-3 my-5">
               <div className="px-5">
                 <Range
@@ -95,7 +95,7 @@ const Home = () => {
             <div className="col-6 col-md-9">
               <Products products={products} col={4} loading={loading} />
             </div>
-          </>
+          </div>
         ) : (
           <Products products={products} col={4} loading={loading} />
         )}
