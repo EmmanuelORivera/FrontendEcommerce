@@ -80,7 +80,6 @@ const Home = () => {
             <div className="col-6 col-md-3 my-5">
               <div className="px-5">
                 <Range
-                  className="test"
                   marks={{ 1: `$1`, 10000: `$10000` }}
                   min={1}
                   max={10000}
