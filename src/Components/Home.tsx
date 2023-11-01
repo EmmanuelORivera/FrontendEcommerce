@@ -5,9 +5,14 @@ import { getProductPagination } from '../actions/productsAction'
 import { toast } from 'react-toastify'
 import Products from './Products/Products'
 import Pagination from 'react-js-pagination'
-import { setPageIndex, updatePrice } from '../slices/productPaginationSlice'
+import {
+  setPageIndex,
+  updateCategory,
+  updatePrice,
+} from '../slices/productPaginationSlice'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
+import { ICategory } from '../interfaces/ICategory'
 
 const { createSliderWithTooltip } = Slider
 const Range = createSliderWithTooltip(Slider.Range)
@@ -16,6 +21,9 @@ const Home = () => {
   const [price, setPrice] = useState([1, 10000])
 
   const dispatch = useAppDispatch()
+
+  const { categories } = useAppSelector((state) => state.category)
+
   const {
     products,
     count,
@@ -41,6 +49,10 @@ const Home = () => {
 
   const onAfterChange = (priceEvent: number[]) => {
     dispatch(updatePrice({ price: priceEvent }))
+  }
+
+  const onChangeCategory = (category: ICategory) => {
+    dispatch(updateCategory({ category: category.id }))
   }
 
   useEffect(() => {
@@ -90,6 +102,23 @@ const Home = () => {
                   onChange={onChangePrice}
                   onAfterChange={onAfterChange}
                 />
+              </div>
+
+              <hr className="my-5" />
+
+              <div className="mt-5">
+                <h4 className="mb-3">Categories</h4>
+                <ul className="pl-0">
+                  {categories.map((category) => (
+                    <li
+                      key={category.id}
+                      style={{ cursor: 'pointer', listStyle: 'none' }}
+                      onClick={() => onChangeCategory(category)}
+                    >
+                      {category.name}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
             <div className="col-6 col-md-9">
