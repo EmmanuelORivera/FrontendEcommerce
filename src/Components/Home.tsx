@@ -9,6 +9,7 @@ import {
   setPageIndex,
   updateCategory,
   updatePrice,
+  updateRating,
 } from '../slices/productPaginationSlice'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
@@ -53,6 +54,10 @@ const Home = () => {
 
   const onChangeCategory = (category: ICategory) => {
     dispatch(updateCategory({ category: category.id }))
+  }
+
+  const onChangeStar = (star: number) => {
+    dispatch(updateRating({ rating: star }))
   }
 
   useEffect(() => {
@@ -116,6 +121,32 @@ const Home = () => {
                       onClick={() => onChangeCategory(category)}
                     >
                       {category.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <hr className="my-5" />
+
+              <div className="mt-5">
+                <h4 className="mb-3">Ratings</h4>
+
+                <ul className="pl-0">
+                  {[5, 4, 3, 2, 1].map((star) => (
+                    <li
+                      key={star}
+                      onClick={() => onChangeStar(star)}
+                      style={{
+                        cursor: 'pointer',
+                        listStyleType: 'none',
+                      }}
+                    >
+                      <div className="rating-outer">
+                        <div
+                          className="rating-inner"
+                          style={{ width: `${star * 20}%` }}
+                        ></div>
+                      </div>
                     </li>
                   ))}
                 </ul>
