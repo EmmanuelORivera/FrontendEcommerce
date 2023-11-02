@@ -133,3 +133,42 @@ export const forgotPassword = createAsyncThunk(
     }
   }
 )
+
+interface ResetPasswordProps {
+  email: string
+  password: string
+  confirmPassword: string
+  token: string
+}
+
+export const resetPassword = createAsyncThunk(
+  'user/resetPassword',
+  async (
+    { email, password, confirmPassword, token }: ResetPasswordProps,
+    { rejectWithValue }
+  ) => {
+    try {
+      const requestConfig: AxiosRequestConfig = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      const request: ResetPasswordProps = {
+        email,
+        password,
+        confirmPassword,
+        token,
+      }
+
+      const { data } = await axios.post(
+        '/api/v1/user/resetpassword',
+        request,
+        requestConfig
+      )
+
+      return data
+    } catch (err) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+)
