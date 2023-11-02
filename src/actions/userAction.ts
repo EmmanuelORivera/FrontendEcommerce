@@ -72,3 +72,18 @@ export const update = createAsyncThunk(
     }
   }
 )
+
+export const loadUser = createAsyncThunk(
+  'user/getUser',
+  async (ApiThunk, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`/api/v1/user`)
+
+      localStorage.setItem('token', data.token)
+
+      return data
+    } catch (err) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+)
