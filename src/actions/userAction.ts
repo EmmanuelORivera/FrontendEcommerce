@@ -110,3 +110,26 @@ export const updatePassword = createAsyncThunk(
     }
   }
 )
+
+export const forgotPassword = createAsyncThunk(
+  'user/forgotPassword',
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestConfig: AxiosRequestConfig = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+
+      const { data } = await axios.post(
+        '/api/v1/user/forgotpassword',
+        params,
+        requestConfig
+      )
+
+      return data
+    } catch (err) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+)
