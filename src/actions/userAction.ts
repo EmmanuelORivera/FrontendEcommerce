@@ -87,3 +87,26 @@ export const loadUser = createAsyncThunk(
     }
   }
 )
+
+export const updatePassword = createAsyncThunk(
+  'user/updatePassword',
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestConfig: AxiosRequestConfig = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+
+      const { data } = await axios.put(
+        '/api/v1/user/updatepassword',
+        params,
+        requestConfig
+      )
+
+      return data
+    } catch (err) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+)
