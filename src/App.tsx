@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import ProductDetail from './Components/Product/ProductDetail'
 import { useAppDispatch } from './hooks'
 import { getCategories } from './actions/categoryAction'
+import Login from './Components/Security/Login'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/product/:id" element={<ProductDetail />}></Route>
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer position="top-center" />
