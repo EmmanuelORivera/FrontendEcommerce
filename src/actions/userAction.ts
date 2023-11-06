@@ -4,7 +4,7 @@ import { AxiosRequestConfig } from 'axios'
 
 export const login = createAsyncThunk(
   'user/login',
-  async (params, { rejectWithValue }) => {
+  async (params: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const requestConfig: AxiosRequestConfig = {
         headers: {
@@ -12,7 +12,11 @@ export const login = createAsyncThunk(
         },
       }
 
-      const { data } = await axios.post('/api/v1/login', params, requestConfig)
+      const { data } = await axios.post(
+        '/api/v1/user/login',
+        params,
+        requestConfig
+      )
 
       localStorage.setItem('token', data.token)
 
