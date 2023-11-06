@@ -10,7 +10,7 @@ import { saveAddressInfo } from '../actions/cartAction'
 
 interface SecurityState {
   loading: boolean
-  errors: []
+  errors: Array<any> // Allows for elements of any type
   isAuthenticated: boolean
   user: null
   isUpdated: boolean
