@@ -7,12 +7,13 @@ import {
   updatePassword,
 } from '../actions/userAction'
 import { saveAddressInfo } from '../actions/cartAction'
+import { IAuthUser } from '../interfaces/IAuthUser'
 
 interface SecurityState {
   loading: boolean
   errors: Array<any> // Allows for elements of any type
   isAuthenticated: boolean
-  user: null
+  user: IAuthUser | null
   isUpdated: boolean
   shippingAddress: null | string
 }
@@ -29,10 +30,10 @@ export const securitySlice = createSlice({
   name: 'security',
   initialState,
   reducers: {
-    logout: (state) => {
+    logout: () => {
       localStorage.removeItem('token')
 
-      state = { ...initialState }
+      return initialState
     },
 
     resetUpdateStatus: (state) => {
