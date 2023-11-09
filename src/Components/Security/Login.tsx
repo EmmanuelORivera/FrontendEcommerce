@@ -1,29 +1,16 @@
-import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import MetaData from '../Layout/MetaData'
-import { toast } from 'react-toastify'
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import { useAppDispatch } from '../../hooks'
 import { login } from '../../actions/userAction'
 import Loader from '../Layout/Loader'
+import useAuthRedirect from '../../hooks/useAuthRedirect'
 
 const Login = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { errors, isAuthenticated, loading } = useAppSelector(
-    (state) => state.security
-  )
+  const { loading } = useAuthRedirect()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/')
-    }
-
-    if (errors) {
-      errors.map((error) => toast.error(error))
-    }
-  }, [isAuthenticated, errors])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
