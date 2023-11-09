@@ -14,7 +14,7 @@ const Register = () => {
     userName: '',
     password: '',
   })
-  const [avatar, setAvatar] = useState('')
+  const [avatar, setAvatar] = useState<File>()
   const [avatarPreview, setAvatarPreview] = useState(
     'images/default_avatar.jpg'
   )
@@ -33,7 +33,7 @@ const Register = () => {
     formData.set('email', email)
     formData.set('username', userName)
     formData.set('password', password)
-    formData.set('picture', avatar)
+    formData.set('photo', avatar)
 
     dispatch(register(formData))
   }
@@ -43,7 +43,7 @@ const Register = () => {
       const reader = new FileReader()
       reader.onload = () => {
         if (reader.readyState === 2) {
-          setAvatarPreview(reader.result)
+          setAvatarPreview(reader.result as string)
           setAvatar(e.target.files[0])
         }
       }
@@ -72,6 +72,7 @@ const Register = () => {
                 className="form-control"
                 value={name}
                 name="name"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -84,6 +85,7 @@ const Register = () => {
                 className="form-control"
                 value={lastName}
                 name="lastName"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -96,6 +98,7 @@ const Register = () => {
                 className="form-control"
                 value={phone}
                 name="phone"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -108,6 +111,7 @@ const Register = () => {
                 className="form-control"
                 value={userName}
                 name="userName"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -120,6 +124,7 @@ const Register = () => {
                 className="form-control"
                 value={email}
                 name="email"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -132,6 +137,7 @@ const Register = () => {
                 className="form-control"
                 value={password}
                 name="password"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -151,6 +157,7 @@ const Register = () => {
                 <div className="custom-file">
                   <input
                     type="file"
+                    required
                     name="avatar"
                     className="custom-file-input"
                     id="customFile"
