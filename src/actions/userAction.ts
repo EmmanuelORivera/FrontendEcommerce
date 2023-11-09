@@ -29,7 +29,7 @@ export const login = createAsyncThunk(
 
 export const register = createAsyncThunk(
   'user/register',
-  async (params, { rejectWithValue }) => {
+  async (params: FormData, { rejectWithValue }) => {
     try {
       const requestConfig: AxiosRequestConfig = {
         headers: {
