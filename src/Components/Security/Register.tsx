@@ -33,7 +33,7 @@ const Register = () => {
     formData.set('email', email)
     formData.set('username', userName)
     formData.set('password', password)
-    formData.set('photo', avatar)
+    formData.set('photo', avatar as File)
 
     dispatch(register(formData))
   }
@@ -44,7 +44,7 @@ const Register = () => {
       reader.onload = () => {
         if (reader.readyState === 2) {
           setAvatarPreview(reader.result as string)
-          setAvatar(e.target.files[0])
+          setAvatar(e.target.files![0])
         }
       }
       reader.readAsDataURL(e.target.files![0])
