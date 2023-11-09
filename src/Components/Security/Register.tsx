@@ -25,6 +25,21 @@ const Register = () => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name === 'avatar') {
+      const reader = new FileReader()
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setAvatarPreview(reader.result)
+          setAvatar(e.target.files[0])
+        }
+      }
+      reader.readAsDataURL(e.target.files![0])
+    } else {
+      setUser({ ...user, [e.target.name]: e.target.value })
+    }
+  }
   return (
     <>
       <MetaData title="Register User" />
@@ -38,14 +53,50 @@ const Register = () => {
             <h1 className="mb-3">Register User</h1>
 
             <div className="form-group">
-              <label htmlFor="email_field">Name</label>
+              <label htmlFor="name_field">Name</label>
               <input
                 type="text"
                 id="name_field"
                 className="form-control"
-                value={user}
+                value={name}
                 name="name"
-                onChange={(e) => setUser(e.target.value)}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="last_name_field">Last Name</label>
+              <input
+                type="text"
+                id="last_name_field"
+                className="form-control"
+                value={lastName}
+                name="lastName"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="phone_field">Phone</label>
+              <input
+                type="text"
+                id="phone_field"
+                className="form-control"
+                value={phone}
+                name="phone"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="username_field">Username</label>
+              <input
+                type="text"
+                id="username_field"
+                className="form-control"
+                value={userName}
+                name="userName"
+                onChange={handleChange}
               />
             </div>
 
@@ -55,7 +106,9 @@ const Register = () => {
                 type="email"
                 id="email_field"
                 className="form-control"
-                value=""
+                value={email}
+                name="email"
+                onChange={handleChange}
               />
             </div>
 
@@ -65,7 +118,9 @@ const Register = () => {
                 type="password"
                 id="password_field"
                 className="form-control"
-                value=""
+                value={password}
+                name="password"
+                onChange={handleChange}
               />
             </div>
 
@@ -74,7 +129,11 @@ const Register = () => {
               <div className="d-flex align-items-center">
                 <div>
                   <figure className="avatar mr-3 item-rtl">
-                    <img src="" className="rounded-circle" alt="image" />
+                    <img
+                      src={avatarPreview}
+                      className="rounded-circle"
+                      alt="preview image"
+                    />
                   </figure>
                 </div>
                 <div className="custom-file">
@@ -83,9 +142,11 @@ const Register = () => {
                     name="avatar"
                     className="custom-file-input"
                     id="customFile"
+                    accept="images/*"
+                    onChange={handleChange}
                   />
                   <label className="custom-file-label" htmlFor="customFile">
-                    Choose Avatar
+                    Upload Avatar
                   </label>
                 </div>
               </div>
