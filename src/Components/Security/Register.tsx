@@ -2,6 +2,7 @@ import { useState } from 'react'
 import MetaData from '../Layout/MetaData'
 import { useAppDispatch } from '../../hooks'
 import useAuthRedirect from '../../hooks/useAuthRedirect'
+import { register } from '../../actions/userAction'
 
 const Register = () => {
   const { loading } = useAuthRedirect()
@@ -24,6 +25,17 @@ const Register = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    const formData = new FormData()
+    formData.set('name', name)
+    formData.set('lastName', lastName)
+    formData.set('phone', phone)
+    formData.set('email', email)
+    formData.set('username', userName)
+    formData.set('password', password)
+    formData.set('picture', avatar)
+
+    dispatch(register(formData))
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
