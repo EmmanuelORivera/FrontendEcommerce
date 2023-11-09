@@ -10,6 +10,7 @@ import ProductDetail from './Components/Product/ProductDetail'
 import { useAppDispatch } from './hooks'
 import { getCategories } from './actions/categoryAction'
 import Login from './Components/Security/Login'
+import Register from './Components/Security/Register'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/product/:id" element={<ProductDetail />}></Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer position="top-center" />
