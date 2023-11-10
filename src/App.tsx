@@ -13,13 +13,19 @@ import Login from './Components/Security/Login'
 import Register from './Components/Security/Register'
 import Profile from './Components/Security/Profile'
 import ProtectedRoute from './Components/Route/ProtectedRoute'
+import { loadUser } from './actions/userAction'
 
 function App() {
   const dispatch = useAppDispatch()
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
     dispatch(getCategories())
-  }, [])
+
+    if (token) {
+      dispatch(loadUser())
+    }
+  }, [dispatch, token])
 
   return (
     <>
