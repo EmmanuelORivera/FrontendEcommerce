@@ -12,6 +12,7 @@ import { getCategories } from './actions/categoryAction'
 import Login from './Components/Security/Login'
 import Register from './Components/Security/Register'
 import Profile from './Components/Security/Profile'
+import ProtectedRoute from './Components/Route/ProtectedRoute'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -29,7 +30,9 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/me" element={<Profile />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/me" element={<Profile />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <ToastContainer position="top-center" />
