@@ -113,6 +113,7 @@ export const securitySlice = createSlice({
         state.loading = false
         state.user = action.payload
         state.errors = []
+        state.isAuthenticated = true
         state.shippingAddress = action.payload.shippingAddress
       }),
       builder.addCase(loadUser.rejected, (state, action) => {

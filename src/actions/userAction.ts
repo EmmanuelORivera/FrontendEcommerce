@@ -54,7 +54,7 @@ export const register = createAsyncThunk(
 
 export const update = createAsyncThunk(
   'user/update',
-  async (params, { rejectWithValue }) => {
+  async (params: FormData, { rejectWithValue }) => {
     try {
       const requestConfig: AxiosRequestConfig = {
         headers: {
