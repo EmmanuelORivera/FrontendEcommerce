@@ -14,6 +14,7 @@ import Register from './Components/Security/Register'
 import Profile from './Components/Security/Profile'
 import ProtectedRoute from './Components/Route/ProtectedRoute'
 import { loadUser } from './actions/userAction'
+import UpdateProfile from './Components/Security/UpdateProfile'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -38,6 +39,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/me" element={<Profile />} />
+            <Route path="/me/update" element={<UpdateProfile />} />
           </Route>
         </Routes>
       </BrowserRouter>
