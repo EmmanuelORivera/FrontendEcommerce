@@ -117,7 +117,7 @@ export const updatePassword = createAsyncThunk(
 
 export const forgotPassword = createAsyncThunk(
   'user/forgotPassword',
-  async (params, { rejectWithValue }) => {
+  async (params: { email: string }, { rejectWithValue }) => {
     try {
       const requestConfig: AxiosRequestConfig = {
         headers: {
