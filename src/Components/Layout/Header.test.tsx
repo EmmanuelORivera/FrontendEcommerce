@@ -17,6 +17,13 @@ describe('Header', () => {
   })
   it('should render the component without problems', () => {})
 
+  it('should render a home link', () => {
+    const homeLink = screen.getByTestId('home-link')
+
+    expect(homeLink).toBeInTheDocument()
+    expect(homeLink).toHaveAttribute('href', '/')
+  })
+
   it('should render a logo with the correct image', () => {
     const logoElement = screen.getByRole('img')
     expect(logoElement).toBeInTheDocument()
