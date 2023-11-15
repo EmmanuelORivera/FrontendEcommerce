@@ -17,6 +17,7 @@ import { loadUser } from './actions/userAction'
 import UpdateProfile from './Components/Security/UpdateProfile'
 import ForgotPassword from './Components/Security/ForgotPassword'
 import NewPassword from './Components/Security/NewPassword'
+import UpdatePassword from './Components/Security/UpdatePassword'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -44,6 +45,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/me" element={<Profile />} />
             <Route path="/me/update" element={<UpdateProfile />} />
+            <Route path="/password/update" element={<UpdatePassword />} />
           </Route>
         </Routes>
       </BrowserRouter>
