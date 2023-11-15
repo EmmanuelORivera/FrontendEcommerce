@@ -16,6 +16,7 @@ import ProtectedRoute from './Components/Route/ProtectedRoute'
 import { loadUser } from './actions/userAction'
 import UpdateProfile from './Components/Security/UpdateProfile'
 import ForgotPassword from './Components/Security/ForgotPassword'
+import NewPassword from './Components/Security/NewPassword'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -39,6 +40,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/password/forgot" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<NewPassword />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/me" element={<Profile />} />
             <Route path="/me/update" element={<UpdateProfile />} />
