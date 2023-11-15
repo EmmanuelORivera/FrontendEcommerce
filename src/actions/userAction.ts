@@ -94,7 +94,10 @@ export const loadUser = createAsyncThunk(
 
 export const updatePassword = createAsyncThunk(
   'user/updatePassword',
-  async (params, { rejectWithValue }) => {
+  async (
+    params: { oldPassword: string; newPassword: string },
+    { rejectWithValue }
+  ) => {
     try {
       const requestConfig: AxiosRequestConfig = {
         headers: {
@@ -102,7 +105,7 @@ export const updatePassword = createAsyncThunk(
         },
       }
 
-      const { data } = await axios.put(
+      const { data } = await axios.post(
         '/api/v1/user/updatepassword',
         params,
         requestConfig
