@@ -84,4 +84,19 @@ describe('ProductInfo', () => {
     expect(quantity).toHaveAttribute('value', String(product.stock))
     expect(increaseButton).toHaveClass('disabled')
   })
+
+  it('should disable decrease button when quantity input has 1 product and disable class insted of btn-danger', () => {
+    render(<ProductInfo product={product} />)
+
+    const decreaseButton = screen.getByText('-')
+    const quantity = screen.getByTestId('quantity-input')
+    const increaseButton = screen.getByText('+')
+
+    expect(quantity).toHaveAttribute('value', '1')
+    expect(decreaseButton).toHaveClass('disabled')
+
+    fireEvent.click(increaseButton)
+    expect(quantity).toHaveAttribute('value', '2')
+    expect(decreaseButton).toHaveClass('btn-danger')
+  })
 })

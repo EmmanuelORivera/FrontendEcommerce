@@ -2,15 +2,22 @@ import { useState } from 'react'
 import { IProduct } from '../../interfaces/IProduct'
 
 const ProductInfo = ({ product }: { product: IProduct | null }) => {
-  const [quantity, setQuantity] = useState(1)
-  const decreaseQuantity = () => {
-    setQuantity((prevQty) => prevQty - 1)
-  }
+  const ONE_PRODUCT = 1
+  const [productQuantity, setProductQuantity] = useState(ONE_PRODUCT)
   const isIncreaseButtonEnable = () => {
-    return quantity < product?.stock!
+    return productQuantity < product?.stock!
   }
+
+  const isDecreaseButtonEnable = () => {
+    return productQuantity > ONE_PRODUCT
+  }
+
   const increseQuantity = () => {
-    if (isIncreaseButtonEnable()) setQuantity((prevQty) => prevQty + 1)
+    if (isIncreaseButtonEnable()) setProductQuantity((prevQty) => prevQty + 1)
+  }
+
+  const decreaseQuantity = () => {
+    if (isDecreaseButtonEnable()) setProductQuantity((prevQty) => prevQty - 1)
   }
 
   return (
@@ -19,7 +26,9 @@ const ProductInfo = ({ product }: { product: IProduct | null }) => {
       <div className="stockCounter d-inline">
         <span
           onClick={decreaseQuantity}
-          className={`btn btn-danger minus`}
+          className={`btn ${
+            isDecreaseButtonEnable() ? 'btn-danger' : 'disabled'
+          }  minus`}
           role="button"
         >
           -
@@ -29,7 +38,7 @@ const ProductInfo = ({ product }: { product: IProduct | null }) => {
           data-testid="quantity-input"
           type="number"
           className="form-control count d-inline"
-          value={quantity}
+          value={productQuantity}
           readOnly
         />
 
