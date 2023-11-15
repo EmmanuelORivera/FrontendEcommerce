@@ -1,11 +1,27 @@
+import { useState } from 'react'
 import { IProduct } from '../../interfaces/IProduct'
 
 const ProductInfo = ({ product }: { product: IProduct | null }) => {
+  const [quantity, setQuantity] = useState(1)
+  const decreaseQuantity = () => {
+    setQuantity((prevQty) => prevQty - 1)
+  }
+  const isIncreaseButtonDisabled = () => {
+    return quantity < product?.stock!
+  }
+  const increseQuantity = () => {
+    if (isIncreaseButtonDisabled()) setQuantity((prevQty) => prevQty + 1)
+  }
+
   return (
     <div data-testid="product-info">
       <p id="product_price">${product?.price}</p>
       <div className="stockCounter d-inline">
-        <span className="btn btn-danger minus" role="button">
+        <span
+          onClick={decreaseQuantity}
+          className={`btn btn-danger minus`}
+          role="button"
+        >
           -
         </span>
 
@@ -13,11 +29,17 @@ const ProductInfo = ({ product }: { product: IProduct | null }) => {
           data-testid="quantity-input"
           type="number"
           className="form-control count d-inline"
-          value="1"
+          value={quantity}
           readOnly
         />
 
-        <span className="btn btn-primary plus" role="button">
+        <span
+          onClick={increseQuantity}
+          className={`btn ${
+            isIncreaseButtonDisabled() ? 'btn-primary' : 'disabled'
+          } plus`}
+          role="button"
+        >
           +
         </span>
       </div>

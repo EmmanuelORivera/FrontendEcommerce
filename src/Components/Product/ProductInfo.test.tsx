@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import ProductInfo from './ProductInfo'
 import { mockProductById } from '../../mocks/handlers'
@@ -49,5 +49,39 @@ describe('ProductInfo', () => {
     const buttonElement = screen.getByText(/add to cart/i)
 
     expect(buttonElement).toBeInTheDocument()
+  })
+
+  it('should increase and decrease correctly', () => {
+    render(<ProductInfo product={product} />)
+
+    const increaseButton = screen.getByText('+')
+    const decreaseButton = screen.getByText('-')
+    const quantity = screen.getByTestId('quantity-input')
+
+    for (let i = 0; i < 10; i++) {
+      fireEvent.click(increaseButton)
+    }
+
+    fireEvent.click(decreaseButton)
+
+    expect(quantity).toHaveAttribute('value', '10')
+  })
+
+  it('should disable increase button when quantity input has the stock limit value and disable the button', () => {
+    render(<ProductInfo product={product} />)
+
+    const increaseButton = screen.getByText('+')
+    const quantity = screen.getByTestId('quantity-input')
+
+    fireEvent.click(increaseButton)
+    expect(quantity).toHaveAttribute('value', '2')
+    expect(increaseButton).toHaveClass('btn-primary')
+
+    for (let i = 0; i <= product.stock; i++) {
+      fireEvent.click(increaseButton)
+    }
+
+    expect(quantity).toHaveAttribute('value', String(product.stock))
+    expect(increaseButton).toHaveClass('disabled')
   })
 })
