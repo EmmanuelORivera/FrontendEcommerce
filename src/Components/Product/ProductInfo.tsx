@@ -6,11 +6,11 @@ const ProductInfo = ({ product }: { product: IProduct | null }) => {
   const decreaseQuantity = () => {
     setQuantity((prevQty) => prevQty - 1)
   }
-  const isIncreaseButtonDisabled = () => {
+  const isIncreaseButtonEnable = () => {
     return quantity < product?.stock!
   }
   const increseQuantity = () => {
-    if (isIncreaseButtonDisabled()) setQuantity((prevQty) => prevQty + 1)
+    if (isIncreaseButtonEnable()) setQuantity((prevQty) => prevQty + 1)
   }
 
   return (
@@ -36,7 +36,7 @@ const ProductInfo = ({ product }: { product: IProduct | null }) => {
         <span
           onClick={increseQuantity}
           className={`btn ${
-            isIncreaseButtonDisabled() ? 'btn-primary' : 'disabled'
+            isIncreaseButtonEnable() ? 'btn-primary' : 'disabled'
           } plus`}
           role="button"
         >
